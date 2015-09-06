@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>斗地主抽癞子</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			margin:0 auto;
+			width:600px;
+			padding-top:100px;
+			text-align: center;
+		}
+		#showResult{
+			width:600px;
+			height:250px;
+			margin-bottom: 20px;
+			border:1px solid #ccc;
+			border-radius: 3px;
+			border-shadow:2px 2px #ccc;
+		}
+		#showResult p{
+			font-size: 200px;
+			color:red;
+			line-height: 250px;
+		}
+		input{
+			width:200px;
+			height:100px;
+			font-size:30px;
+			font-family: "微软雅黑";
+		}
+		.pointer{
+			cursor:pointer;
+		}
+		.wait{
+			cursor:wait;
+		}
+	</style>
+</head>
+<body>
+	<div id="showResult"></div>
+	<input type="button" onclick="ck()" value="点击抽癞子">
+	<script type="text/javascript">
+		arr1 = ["红桃","方片","草花","梅花"];
+		arr2 = ["3","4","5","6","7","8","9","10","J","Q","K","A","2"];
+		var onck = 0;
+		function ck(){
+			var num = 0;
+			var a,b;
+			var showBox = document.getElementById('showResult');
+			var btn = document.getElementsByTagName('input');
+			if(!onck){		
+				onck = 1;
+				// btn[0].classList.add("wait");
+				// btn[0].classList.remove("pointer");
+				var timer = setInterval(function(){
+					a = Math.floor(Math.random() * 4);
+					b = Math.floor(Math.random() * 13);
+					showBox.innerHTML = "<p>"+arr2[b]+"</p>";
+					num++;
+					if(num == 15){
+						clearInterval(timer);
+					}
+				},50);
+				setTimeout(function(){
+					onck = 0;
+					// btn[0].classList.add("pointer");
+					// btn[0].classList.remove("wait");
+				},1000);
+			}
+		}
+	</script>
+</body>
+</html>
